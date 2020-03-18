@@ -26,25 +26,25 @@ namespace Example.StudentsManagement.App_Start
 
             
             //2. If user has VIEW OWN STUDENT PROFILE permission, and requesting to view a student resource. 
-            PermissionAuthorizationService.AddRule(new AuthorizationRuleFunctionForPermission(AppPermissions.VIEW_OWN_STUDENT_PROFILE, ResourceTypes.STUDENT)
-            {
-                RuleFunction =  (userId, resourceId) =>
-                {
-                    InMemoryRepository repository = new InMemoryRepository();
-                    var resource = repository.GetAll<Student>().Where(s => s.Id.ToString() == resourceId).FirstOrDefault();
-                    return (resource != null && resource.User.Username == userId); //Logged in user can view only his/her student profile
-                }
-                //RuleFunction =async (userId, resourceId) =>
-                //{
-                //    InMemoryRepository repository = new InMemoryRepository();
-                //    var resource = repository.GetAll<Student>().Where(s => s.Id.ToString() == resourceId).FirstOrDefault();
-                //    return (resource != null && resource.User.Username == userId); //Logged in user can view only his/her student profile
-                //}
-            });
+            //PermissionAuthorizationService.AddRule(new AuthorizationRuleFunctionForPermission(AppPermissions.VIEW_OWN_STUDENT_PROFILE, ResourceTypes.STUDENT)
+            //{
+            //    RuleFunction =  (userId, resourceId) =>
+            //    {
+            //        InMemoryRepository repository = new InMemoryRepository();
+            //        var resource = repository.GetAll<Student>().Where(s => s.Id.ToString() == resourceId).FirstOrDefault();
+            //        return (resource != null && resource.User.Username == userId); //Logged in user can view only his/her student profile
+            //    }
+            //    //RuleFunction =async (userId, resourceId) =>
+            //    //{
+            //    //    InMemoryRepository repository = new InMemoryRepository();
+            //    //    var resource = repository.GetAll<Student>().Where(s => s.Id.ToString() == resourceId).FirstOrDefault();
+            //    //    return (resource != null && resource.User.Username == userId); //Logged in user can view only his/her student profile
+            //    //}
+            //});
             
 
-            //2. If user has VIEW OWN ADMIN PROFILE permission, and requesting to view an administrator resource. 
-            PermissionAuthorizationService.AddRule(new OwnAdminProfileRule(AppPermissions.VIEW_OWN_ADMIN_PROFILE, ResourceTypes.ADMINISTRATOR));
+            ////2. If user has VIEW OWN ADMIN PROFILE permission, and requesting to view an administrator resource. 
+            //PermissionAuthorizationService.AddRule(new OwnAdminProfileRule(AppPermissions.VIEW_OWN_ADMIN_PROFILE, ResourceTypes.ADMINISTRATOR));
         }
     }
 }

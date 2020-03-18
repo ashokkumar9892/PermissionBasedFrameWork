@@ -24,6 +24,10 @@ namespace Example.StudentsManagement.Controllers
         [AuthorizePermission(new string[] { AppPermissions.VIEW_ADMINISTRATOR_PROFILES, AppPermissions.VIEW_OWN_ADMIN_PROFILE, AppPermissions.MANAGE_ADMINISTRATOR_PROFILE }, IdParameterName = "administratorId", ResourceType = ResourceTypes.ADMINISTRATOR)]
         public async Task<ActionResult> Details(int? administratorId)
         {
+
+            // access all resources
+           var resultResource=  InMemoryRepository.repository;
+
             var identity = User.Identity;
             if (administratorId == null)
             {

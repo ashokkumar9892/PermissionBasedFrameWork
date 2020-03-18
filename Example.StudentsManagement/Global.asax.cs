@@ -34,7 +34,6 @@ namespace Example.StudentsManagement
             {
                 Id = 1,
                 Role = "Super User",
-                //Permissions = { AppPermissions.MANAGE_PERMISSIONS, AppPermissions.MANAGE_ROLES, AppPermissions.MANAGE_ADMINISTRATOR_PROFILE}
                 Permissions = { AppPermissions.VIEW_STUDENT_PROFILES , AppPermissions.VIEW_OWN_ADMIN_PROFILE, AppPermissions.MANAGE_STUDENT_PROFILE , AppPermissions.VIEW_ADMINISTRATOR_PROFILES, AppPermissions.MANAGE_STUDENT_PROFILE, AppPermissions.MANAGE_PERMISSIONS, AppPermissions.MANAGE_ROLES, AppPermissions.MANAGE_ADMINISTRATOR_PROFILE }
             };
             var adminManagerRole = new ApplicationRole
@@ -86,7 +85,7 @@ namespace Example.StudentsManagement
             var superadmin2 = new ApplicationUser
             {
                 Id = 5,
-                Username = "superadmin",
+                Username = "superadmin2",
                 Roles = { adminManagerRole2 }
             };
            
