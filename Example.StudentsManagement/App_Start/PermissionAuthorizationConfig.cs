@@ -23,6 +23,7 @@ namespace Example.StudentsManagement.App_Start
             //1. Do not authorize when the logged in user does not have specified permission
             PermissionAuthorizationService.AddRule(new AuthorizeWhenUserHasPermission());
 
+
             
             //2. If user has VIEW OWN STUDENT PROFILE permission, and requesting to view a student resource. 
             PermissionAuthorizationService.AddRule(new AuthorizationRuleFunctionForPermission(AppPermissions.VIEW_OWN_STUDENT_PROFILE, ResourceTypes.STUDENT)
