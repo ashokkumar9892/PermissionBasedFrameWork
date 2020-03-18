@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>AspNetMvc.Authorization.PermissionBased</id>
+    <version>1.0.0.1</version>
+	<title>Permission based Authorization in Asp.NET MVC Identity Framework</title>
+	<summary>Allows to define data source for list of permissions associated with a user and list of custom permission authorization rules, and then check permissions of logged in user using User object and add attributes in MVC Controller/Actions for permission based authorization.</summary>
+    <authors>Bikash Bishwokarma</authors>
+    <owners>Bikash Bishwokarma</owners>
+    <licenseUrl>https://github.com/bbishwokarma/AspNetIdentityPermissionBasedAuthorization/blob/master/licence</licenseUrl>
+    <projectUrl>https://github.com/bbishwokarma/AspNetIdentityPermissionBasedAuthorization</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Adds permission based authorization capability on the top of Asp.NET MVC Identity framework</description>
+    <releaseNotes>Improvement in the default AuthorizeWhenUserHasPermission permission rule</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>asp.net mvc identity permission authorization feature</tags>
+    <dependencies>
+	  <dependency id="Microsoft.AspNet.Identity.Core" version="2.2.1"/>
+	  <dependency id="Microsoft.AspNet.Mvc" version="5.2.3"/>
+	  <dependency id="Microsoft.AspNet.Razor" version="3.2.3" />
+	  <dependency id="Microsoft.AspNet.WebPages" version="3.2.3" />
+	  <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0"/>
+    </dependencies>
+  </metadata>
+  <files>
+	<file src="AspNetMvc.Authorization.PermissionBased\bin\Release\AspNetMvc.Authorization.PermissionBased.dll" target="lib"/>
+  </files>
+</package>
