@@ -35,7 +35,7 @@ namespace AspNetMvc.Authorization.PermissionBased
             specialRules.Add(rule);
         }
 
-        public static  bool HasPermissionIn(string userId, ICollection<string> permissions, string resourceType = null, string resourceId = null)
+        public static bool HasPermissionIn(string userId, ICollection<string> permissions, string resourceType = null, string resourceId = null)
         {
             /// we can check cache..
             if (!initialized)

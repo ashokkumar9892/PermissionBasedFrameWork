@@ -30,7 +30,7 @@ namespace AspNetMvc.Authorization.PermissionBased
             {
                 resourceId = filterContext.HttpContext.Request[IdParameterName.ToLower().Trim()]; 
             }
-            bool hasPermission =  user.HasPermissionIn(permissions, ResourceType, resourceId);
+            bool hasPermission =   user.HasPermissionIn(permissions, ResourceType, resourceId);
             if (!hasPermission)
             { 
                 this.HandleUnauthorizedRequest(filterContext);

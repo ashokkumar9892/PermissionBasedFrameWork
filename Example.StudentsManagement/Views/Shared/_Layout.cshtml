@@ -21,7 +21,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @if (User.HasPermissionIn(new string[] { AppPermissions.MANAGE_ADMINISTRATOR_PROFILE, AppPermissions.VIEW_ADMINISTRATOR_PROFILES }))
+                    @if ( User.HasPermissionIn(new string[] { AppPermissions.MANAGE_ADMINISTRATOR_PROFILE, AppPermissions.VIEW_ADMINISTRATOR_PROFILES }))
                     {
                         <li>@Html.ActionLink("Administrators", "Index", "Administrators")</li>
                     }

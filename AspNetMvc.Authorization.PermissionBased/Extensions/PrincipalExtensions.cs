@@ -22,7 +22,7 @@ public static class PrincipalExtensions
         {
             return false;
         }
-        return  PermissionAuthorizationService.HasPermissionIn(userId, permissions.ToList(), resourceType, resourceId);
+        return   PermissionAuthorizationService.HasPermissionIn(userId, permissions.ToList(), resourceType, resourceId);
     }
     
 
