@@ -2,14 +2,18 @@
 using Example.StudentsManagement.DAL;
 using Example.StudentsManagement.Models;
 using Example.StudentsManagement.Models.Constants;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Linq;
+
 
 namespace Example.StudentsManagement
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        public List<Permissions> Permissions = new List<Permissions>();
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -124,6 +128,72 @@ namespace Example.StudentsManagement
             repository.Add(new Administrator { Id = 4, Name = "Michael Sindhu", User = admin });
             repository.Add(new Student { Id = 5, Name = "Jeff Studants", User = student1 });
             repository.Add(new Student { Id = 6, Name = "Mitchel Studants", User = student2 });
+
+
+            // adding all permissions
+            superuser.Permissions.ToList().ForEach(x =>
+            {
+
+                Permissions.Add(new Permissions()
+                {
+                    Permission = x,
+                    UserId = superuser.Id.ToString(),
+                    Roles = superuser.Roles
+                });
+            });
+
+            adminManagerRole.Permissions.ToList().ForEach(x =>
+            {
+
+                Permissions.Add(new Permissions()
+                {
+                    Permission = x,
+                    UserId = adminManagerRole.Id.ToString()
+                });
+            });
+
+            adminManagerRole2.Permissions.ToList().ForEach(x =>
+            {
+
+                Permissions.Add(new Permissions()
+                {
+                    Permission = x,
+                    UserId = adminManagerRole2.Id.ToString()
+                });
+            });
+
+            studentsAdministratorRole.Permissions.ToList().ForEach(x =>
+            {
+
+                Permissions.Add(new Permissions()
+                {
+                    Permission = x,
+                    UserId = studentsAdministratorRole.Id.ToString()
+                });
+            });
+            teachingAssistantRole.Permissions.ToList().ForEach(x =>
+            {
+
+                Permissions.Add(new Permissions()
+                {
+                    Permission = x,
+                    UserId = teachingAssistantRole.Id.ToString()
+                });
+            });
+            studentRole.Permissions.ToList().ForEach(x =>
+            {
+
+                Permissions.Add(new Permissions()
+                {
+                    Permission = x,
+                    UserId = studentRole.Id.ToString()
+                });
+            });
+            Permissions.ToList().ForEach(x =>
+            {
+                repository.Add(x);
+            });
+            
         }
     }
 }

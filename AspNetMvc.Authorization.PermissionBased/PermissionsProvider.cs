@@ -23,7 +23,7 @@ namespace AspNetMvc.Authorization.PermissionBased
         }
 
 
-        public ICollection<string> GetPermissions(string userId)
+        public ICollection<string> GetPermissions(string userId="")
         {
             if (permissionsCache != null)
             {

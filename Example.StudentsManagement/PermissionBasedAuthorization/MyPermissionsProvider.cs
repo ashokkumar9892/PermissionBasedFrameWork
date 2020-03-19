@@ -14,5 +14,19 @@ namespace Example.StudentsManagement.PermissionBasedAuthorization
             var permissions = user != null ? user.Roles.SelectMany(r => r.Permissions).ToList() : new List<string>();
             return permissions;
         }
+
+        public static List<Permissions> GetAllPermissions(string userId)
+        {
+            InMemoryRepository repository = new InMemoryRepository();
+            var permissions = repository.GetAll<Permissions>();
+
+            if (!string.IsNullOrEmpty(userId))
+            {
+                permissions = repository.GetAll<Permissions>().Where(u => u.UserId == userId).ToList();
+            }
+
+            return permissions;
+        }
+
     }
 }

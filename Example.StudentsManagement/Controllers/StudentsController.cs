@@ -6,6 +6,7 @@ using Example.StudentsManagement.DAL;
 using AspNetMvc.Authorization.PermissionBased;
 using Example.StudentsManagement.Models.Constants;
 using System.Threading.Tasks;
+using Example.StudentsManagement.PermissionBasedAuthorization;
 
 namespace Example.StudentsManagement.Controllers
 {
@@ -30,6 +31,12 @@ namespace Example.StudentsManagement.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Student student =  db.GetAll<Student>().FirstOrDefault(s => s.Id == studentId);
+
+            var allpermission = MyPermissionsProvider.GetAllPermissions(student.User.Id.ToString());
+            
+
+            allpermission = MyPermissionsProvider.GetAllPermissions("");
+
             if (student == null)
             {
                 return HttpNotFound();
