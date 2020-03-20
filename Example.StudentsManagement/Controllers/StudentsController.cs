@@ -33,7 +33,9 @@ namespace Example.StudentsManagement.Controllers
             Student student =  db.GetAll<Student>().FirstOrDefault(s => s.Id == studentId);
 
             InMemoryRepository repository = new InMemoryRepository();
-            var user = repository.GetAll<ApplicationUser>().Where(u => u.Username == student.User.Username).First();
+            //var user = repository.GetAll<ApplicationUser>().Where(u => u.Username == student.User.Username).First();
+
+            var user = repository.GetAll<Student>().Where(u => u.User.Username == student.Name).First();
 
 
 

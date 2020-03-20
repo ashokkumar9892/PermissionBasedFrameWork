@@ -10,24 +10,15 @@ namespace Example.StudentsManagement.PermissionBasedAuthorization
         public static List<string> GetPermissions(string username)
         {
             InMemoryRepository repository = new InMemoryRepository();
-            var user = repository.GetAll<ApplicationUser>().Where(u => u.Username == username).First();
+            var user = repository.GetAll<Student>().Where(u => u.User.Username == username).First();
+            var institution = repository.GetAll<StudentAssociation>().Where(u => u.StudentGuid == user.Guid).First();
+            var permission = repository.GetAll<UserPermissions>().Where(u => u.InstitutionGuid == institution.InstitutionGuid).ToList();
+            var permissions = institution != null ? permission.SelectMany(r => r.Permissions).ToList() : new List<string>();
             //var permissions = user != null ? user.Roles.SelectMany(r => r.Permissions).ToList() : new List<string>();
             //return permissions;
-            return null;
+            return permissions;
         }
 
-        //public static List<Permissions> GetAllPermissions(string userId)
-        //{
-        //    InMemoryRepository repository = new InMemoryRepository();
-        //    var permissions = repository.GetAll<Permissions>();
-
-        //    if (!string.IsNullOrEmpty(userId))
-        //    {
-        //        permissions = repository.GetAll<Permissions>().Where(u => u.UserId == userId).ToList();
-        //    }
-
-        //    return permissions;
-        //}
-
+        
     }
 }

@@ -122,8 +122,16 @@ namespace Example.StudentsManagement
             var student2 = new ApplicationUser
             {
                 Id = 6,
-                Username = "student2"
-               
+                Username = "jared"//,
+                //Roles = { studentRole }
+
+            };
+
+            var student3 = new ApplicationUser
+            {
+                Id = 7,
+                Username = "ashok"
+
             };
 
             repository.Add(superuser);
@@ -132,14 +140,15 @@ namespace Example.StudentsManagement
             repository.Add(admin);
             repository.Add(teacher);
             repository.Add(student2);
+            repository.Add(student3);
 
             repository.Add(new Administrator { Id = 1, Name = "Bob Smith", User = superuser });
             repository.Add(new Administrator { Id = 2, Name = "Paul Smith", User = superadmin });
             repository.Add(new Administrator { Id = 3, Name = "Paul J. Smith", User = superadmin2 });
             repository.Add(new Administrator { Id = 4, Name = "Michael Sindhu", User = admin });
             //repository.Add(new Student { Id = 5, Guid = "AAAA", Name = "Jeff Studants", User = student1 });
-            repository.Add(new Student { Id = 6, Guid = "BBBB", Name = "Mitchel Studants", User = student2 });
-
+            repository.Add(new Student { Id = 6, Guid = "AAAA", Name = "Jared", User = student2 });
+            repository.Add(new Student { Id = 7, Guid = "BBBB", Name = "Ashok", User = student3 });
 
             // institutions
             var system = new Institution()
@@ -148,7 +157,7 @@ namespace Example.StudentsManagement
                 ObjectType = "System",
                 Level = 0
             };
-
+            repository.Add(system);
             var scantron = new Institution()
             {
                 Guid = "1111111111",
@@ -156,6 +165,7 @@ namespace Example.StudentsManagement
                 ParentGuid = "0000000",
                 Level = 1
             };
+            repository.Add(scantron);
             var client1 = new Institution()
             {
                 Guid = "ABC1",
@@ -163,7 +173,7 @@ namespace Example.StudentsManagement
                 ParentGuid = "0000000",
                 Level = 1
             };
-
+            repository.Add(client1);
             var School1 = new Institution()
             {
                 Guid = "BCD2",
@@ -171,7 +181,7 @@ namespace Example.StudentsManagement
                 ParentGuid = "ABC1",
                 Level = 2
             };
-
+            repository.Add(School1);
             var Class1 = new Institution()
             {
                 Guid = "FED4",
@@ -179,7 +189,7 @@ namespace Example.StudentsManagement
                 ParentGuid = "BCD2",
                 Level = 3
             };
-
+            repository.Add(Class1);
             var Class2 = new Institution()
             {
                 Guid = "JDH5",
@@ -187,7 +197,7 @@ namespace Example.StudentsManagement
                 ParentGuid = "BCD2",
                 Level = 3
             };
-
+            repository.Add(Class2);
             var School2 = new Institution()
             {
                 Guid = "CDE3",
@@ -195,18 +205,19 @@ namespace Example.StudentsManagement
                 ParentGuid = "ABC1",
                 Level = 2
             };
-
+            repository.Add(School2);
             var studentSchoolAssociation = new StudentAssociation()
             {
                 InstitutionGuid = "BCD2",
                 StudentGuid = "AAAA"
             };
+            repository.Add(studentSchoolAssociation);
             var studentClassroomAssociation = new StudentAssociation()
             {
                 InstitutionGuid = "FED4",
-                StudentGuid = "AAAA"
+                StudentGuid = "BBBB"
             };
-
+            repository.Add(studentClassroomAssociation);
             var teacherSchoolPermissions = new UserPermissions()
             {
                 InstitutionGuid = "BCD2",
@@ -214,7 +225,10 @@ namespace Example.StudentsManagement
                 Permissions = new List<string>(),
                 UserGuid = "teacher"
             };
-
+            teacherSchoolPermissions.Permissions.Add(AppPermissions.VIEW_STUDENT_PROFILES);
+            teacherSchoolPermissions.Permissions.Add(AppPermissions.MANAGE_STUDENT_PROFILE);
+            
+            repository.Add(teacherSchoolPermissions);
         }
     }
 }
