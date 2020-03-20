@@ -86,30 +86,29 @@ namespace Example.StudentsManagement
             var superuser = new ApplicationUser
             {
                 Id = 1,
-                Username = "superuser",
-                Roles = { superUserRole, adminManagerRole, studentsAdministratorRole }
+                Username = "superuser"
             };
 
             var superadmin = new ApplicationUser
             {
                 Id = 2,
-                Username = "superadmin",
-                Roles = { adminManagerRole2, studentsAdministratorRole }
+                Username = "superadmin"
+                
             };
 
             var superadmin2 = new ApplicationUser
             {
                 Id = 5,
-                Username = "superadmin2",
-                Roles = { adminManagerRole2 }
+                Username = "superadmin2"
+                
             };
            
 
             var admin = new ApplicationUser
             {
                 Id = 4,
-                Username = "admin",
-                Roles = { studentsAdministratorRole }
+                Username = "admin"
+                
             };
 
             var teacher = new ApplicationUser
@@ -117,14 +116,14 @@ namespace Example.StudentsManagement
                 Id = 5,
                 Guid = "teacher",
                 Username = "student1",   //This student is TA who can view other student's profiles
-                Roles = { studentRole, teachingAssistantRole }
+                
             };
 
             var student2 = new ApplicationUser
             {
                 Id = 6,
-                Username = "student2",
-                Roles = { studentRole }
+                Username = "student2"
+               
             };
 
             repository.Add(superuser);
@@ -138,7 +137,7 @@ namespace Example.StudentsManagement
             repository.Add(new Administrator { Id = 2, Name = "Paul Smith", User = superadmin });
             repository.Add(new Administrator { Id = 3, Name = "Paul J. Smith", User = superadmin2 });
             repository.Add(new Administrator { Id = 4, Name = "Michael Sindhu", User = admin });
-            repository.Add(new Student { Id = 5, Guid = "AAAA", Name = "Jeff Studants", User = student1 });
+            //repository.Add(new Student { Id = 5, Guid = "AAAA", Name = "Jeff Studants", User = student1 });
             repository.Add(new Student { Id = 6, Guid = "BBBB", Name = "Mitchel Studants", User = student2 });
 
 
