@@ -15,18 +15,18 @@ namespace Example.StudentsManagement.PermissionBasedAuthorization
             return permissions;
         }
 
-        public static List<Permissions> GetAllPermissions(string userId)
-        {
-            InMemoryRepository repository = new InMemoryRepository();
-            var permissions = repository.GetAll<Permissions>();
+        //public static List<Permissions> GetAllPermissions(string userId)
+        //{
+        //    InMemoryRepository repository = new InMemoryRepository();
+        //    var permissions = repository.GetAll<Permissions>();
 
-            if (!string.IsNullOrEmpty(userId))
-            {
-                permissions = repository.GetAll<Permissions>().Where(u => u.UserId == userId).ToList();
-            }
+        //    if (!string.IsNullOrEmpty(userId))
+        //    {
+        //        permissions = repository.GetAll<Permissions>().Where(u => u.UserId == userId).ToList();
+        //    }
 
-            return permissions;
-        }
+        //    return permissions;
+        //}
 
     }
 }

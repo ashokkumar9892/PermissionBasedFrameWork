@@ -13,7 +13,7 @@ namespace Example.StudentsManagement
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        public List<Permissions> Permissions = new List<Permissions>();
+        
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -55,16 +55,24 @@ namespace Example.StudentsManagement
             var studentsAdministratorRole = new ApplicationRole
             {
                 Id = 3,
-                Role = "Students Manager",
+                Role="District",
+                //Role = "Students Manager",
                 Permissions = { AppPermissions.VIEW_OWN_ADMIN_PROFILE,  AppPermissions.MANAGE_STUDENT_PROFILE }
             };
             var teachingAssistantRole = new ApplicationRole
             {
                 Id = 4,
-                Role = "Teaching Assistant",
-                Permissions = { AppPermissions.VIEW_STUDENT_PROFILES }
+                Role = "School",
+                //Role = "Teaching Assistant",
+                Permissions = { AppPermissions.VIEW_STUDENT_PROFILES, AppPermissions.MANAGE_STUDENT_PROFILE }
             };
-            var studentRole = new ApplicationRole { Id = 5, Role = "Student", Permissions = { AppPermissions.VIEW_OWN_STUDENT_PROFILE } };
+            var studentRole = new ApplicationRole 
+            { 
+                Id = 5, 
+                Role="Class Room",
+                //Role = "Student",
+                Permissions = { AppPermissions.VIEW_OWN_STUDENT_PROFILE  } 
+            };
 
             repository.Add(superUserRole);
             repository.Add(adminManagerRole);
@@ -130,69 +138,7 @@ namespace Example.StudentsManagement
             repository.Add(new Student { Id = 6, Name = "Mitchel Studants", User = student2 });
 
 
-            // adding all permissions
-            superuser.Permissions.ToList().ForEach(x =>
-            {
 
-                Permissions.Add(new Permissions()
-                {
-                    Permission = x,
-                    UserId = superuser.Id.ToString(),
-                    Roles = superuser.Roles
-                });
-            });
-
-            adminManagerRole.Permissions.ToList().ForEach(x =>
-            {
-
-                Permissions.Add(new Permissions()
-                {
-                    Permission = x,
-                    UserId = adminManagerRole.Id.ToString()
-                });
-            });
-
-            adminManagerRole2.Permissions.ToList().ForEach(x =>
-            {
-
-                Permissions.Add(new Permissions()
-                {
-                    Permission = x,
-                    UserId = adminManagerRole2.Id.ToString()
-                });
-            });
-
-            studentsAdministratorRole.Permissions.ToList().ForEach(x =>
-            {
-
-                Permissions.Add(new Permissions()
-                {
-                    Permission = x,
-                    UserId = studentsAdministratorRole.Id.ToString()
-                });
-            });
-            teachingAssistantRole.Permissions.ToList().ForEach(x =>
-            {
-
-                Permissions.Add(new Permissions()
-                {
-                    Permission = x,
-                    UserId = teachingAssistantRole.Id.ToString()
-                });
-            });
-            studentRole.Permissions.ToList().ForEach(x =>
-            {
-
-                Permissions.Add(new Permissions()
-                {
-                    Permission = x,
-                    UserId = studentRole.Id.ToString()
-                });
-            });
-            Permissions.ToList().ForEach(x =>
-            {
-                repository.Add(x);
-            });
             
         }
     }

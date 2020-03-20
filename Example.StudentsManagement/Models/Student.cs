@@ -12,4 +12,9 @@ namespace Example.StudentsManagement.Models
         
         public ApplicationUser User { get; set; }
     }
+
+
+
+
+
 }

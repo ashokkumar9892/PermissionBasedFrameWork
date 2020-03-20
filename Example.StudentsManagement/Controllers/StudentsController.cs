@@ -32,10 +32,10 @@ namespace Example.StudentsManagement.Controllers
             }
             Student student =  db.GetAll<Student>().FirstOrDefault(s => s.Id == studentId);
 
-            var allpermission = MyPermissionsProvider.GetAllPermissions(student.User.Id.ToString());
-            
+            InMemoryRepository repository = new InMemoryRepository();
+            var user = repository.GetAll<ApplicationUser>().Where(u => u.Username == student.User.Username).First();
 
-            allpermission = MyPermissionsProvider.GetAllPermissions("");
+
 
             if (student == null)
             {

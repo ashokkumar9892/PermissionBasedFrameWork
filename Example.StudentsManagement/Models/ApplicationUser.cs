@@ -13,32 +13,11 @@ namespace Example.StudentsManagement.Models
         /// </summary>
         public ICollection<ApplicationRole> Roles { get; set; }
 
-        public List<string> Permissions { get; set; }
-
         public ApplicationUser()
         {
-            Roles = new List<ApplicationRole>();
-            Permissions = new List<string>();
+            Roles = new List<ApplicationRole>(); /// Role is nothing but access level like School 1 /School2 , ClassRoom A ClassRoom B
         }
     }
 
-    public class Permissions
-    {
-        public int Id { get; set; }
-        public string Username { get; set; }
-
-        public string UserId { get; set; }
-
-        public string Permission { get; set; }
-        /// <summary>
-        /// Set of roles assigned to a user.
-        /// Application should provide capability to assign or remove roles of a user.
-        /// </summary>
-        public ICollection<ApplicationRole> Roles { get; set; }
-
-        public Permissions()
-        {
-            Roles = new List<ApplicationRole>();
-        }
-    }
+ 
 }
