@@ -156,6 +156,7 @@
     </Compile>
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Intitution.cs" />
     <Compile Include="Models\Constants\ResourceTypes.cs" />
     <Compile Include="Models\MyIdentity.cs" />
     <Compile Include="Models\Student.cs" />

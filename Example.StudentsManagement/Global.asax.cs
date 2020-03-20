@@ -62,6 +62,7 @@ namespace Example.StudentsManagement
             var teachingAssistantRole = new ApplicationRole
             {
                 Id = 4,
+                
                 Role = "School",
                 //Role = "Teaching Assistant",
                 Permissions = { AppPermissions.VIEW_STUDENT_PROFILES, AppPermissions.MANAGE_STUDENT_PROFILE }
@@ -73,6 +74,8 @@ namespace Example.StudentsManagement
                 //Role = "Student",
                 Permissions = { AppPermissions.VIEW_OWN_STUDENT_PROFILE  } 
             };
+
+
 
             repository.Add(superUserRole);
             repository.Add(adminManagerRole);
@@ -109,9 +112,10 @@ namespace Example.StudentsManagement
                 Roles = { studentsAdministratorRole }
             };
 
-            var student1 = new ApplicationUser
+            var teacher = new ApplicationUser
             {
                 Id = 5,
+                Guid = "teacher",
                 Username = "student1",   //This student is TA who can view other student's profiles
                 Roles = { studentRole, teachingAssistantRole }
             };
@@ -127,19 +131,91 @@ namespace Example.StudentsManagement
             repository.Add(superadmin);
             repository.Add(superadmin2);
             repository.Add(admin);
-            repository.Add(student1);
+            repository.Add(teacher);
             repository.Add(student2);
 
             repository.Add(new Administrator { Id = 1, Name = "Bob Smith", User = superuser });
             repository.Add(new Administrator { Id = 2, Name = "Paul Smith", User = superadmin });
             repository.Add(new Administrator { Id = 3, Name = "Paul J. Smith", User = superadmin2 });
             repository.Add(new Administrator { Id = 4, Name = "Michael Sindhu", User = admin });
-            repository.Add(new Student { Id = 5, Name = "Jeff Studants", User = student1 });
-            repository.Add(new Student { Id = 6, Name = "Mitchel Studants", User = student2 });
+            repository.Add(new Student { Id = 5, Guid = "AAAA", Name = "Jeff Studants", User = student1 });
+            repository.Add(new Student { Id = 6, Guid = "BBBB", Name = "Mitchel Studants", User = student2 });
 
 
+            // institutions
+            var system = new Institution()
+            {
+                Guid = "0000000",
+                ObjectType = "System",
+                Level = 0
+            };
 
-            
+            var scantron = new Institution()
+            {
+                Guid = "1111111111",
+                ObjectType = "Scantron",
+                ParentGuid = "0000000",
+                Level = 1
+            };
+            var client1 = new Institution()
+            {
+                Guid = "ABC1",
+                ObjectType = "District",
+                ParentGuid = "0000000",
+                Level = 1
+            };
+
+            var School1 = new Institution()
+            {
+                Guid = "BCD2",
+                ObjectType = "School",
+                ParentGuid = "ABC1",
+                Level = 2
+            };
+
+            var Class1 = new Institution()
+            {
+                Guid = "FED4",
+                ObjectType = "Classroom",
+                ParentGuid = "BCD2",
+                Level = 3
+            };
+
+            var Class2 = new Institution()
+            {
+                Guid = "JDH5",
+                ObjectType = "SchClassroomool",
+                ParentGuid = "BCD2",
+                Level = 3
+            };
+
+            var School2 = new Institution()
+            {
+                Guid = "CDE3",
+                ObjectType = "School",
+                ParentGuid = "ABC1",
+                Level = 2
+            };
+
+            var studentSchoolAssociation = new StudentAssociation()
+            {
+                InstitutionGuid = "BCD2",
+                StudentGuid = "AAAA"
+            };
+            var studentClassroomAssociation = new StudentAssociation()
+            {
+                InstitutionGuid = "FED4",
+                StudentGuid = "AAAA"
+            };
+
+            var teacherSchoolPermissions = new UserPermissions()
+            {
+                InstitutionGuid = "BCD2",
+                Roles = new List<ApplicationRole>(),
+                Permissions = new List<string>(),
+                UserGuid = "teacher"
+            };
+
         }
     }
 }
